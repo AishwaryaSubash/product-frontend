@@ -14,14 +14,10 @@ function App() {
 
       <Router>
         <Routes>
-          {/* <Route path="home" element={<Home />}>
-            <Route path="profile" element={<Profile />} />
-            <Route path="account" element={<Account />} />
-          </Route> */}
           <Route index path="/" element={<Layout />} />
-          <Route path="displayproduct" element={<ProductDisplay />} />
-          <Route path="addproduct" element={<AddProduct />} />
-          <Route path="editproduct/:productId" element={<EditProduct />} />
+          <Route path="/displayproduct" element={<ProductDisplay />} />
+          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/editproduct/:productId" element={<EditProduct />} />
           <Route
             path="*"
             element={
