@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-// import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "./../App";
 
@@ -48,7 +48,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="mt-[70px]">
+    <div className="mt-[70px] flex flex-col items-center gap-2">
       <p className="text-center text-2xl font-bold my-8">Add New Product</p>
       <form className="w-fit p-4 grid grid-cols-2 gap-4 items-center justify-between bg-slate-600 rounded-lg">
         <label>Product Name</label>
@@ -114,6 +114,9 @@ const AddProduct = () => {
           Add Product to Product List
         </button>
       </form>
+      <Link to="/displayproduct" className="underline">
+        Go to Product Display
+      </Link>
     </div>
   );
 };
