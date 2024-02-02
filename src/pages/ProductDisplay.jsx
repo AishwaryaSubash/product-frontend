@@ -1,7 +1,34 @@
+import { useContext, useEffect } from "react";
 import { products } from "../assets/products";
 import { Link } from "react-router-dom";
+import { SessionContext } from "./../App";
+// import { useEffect } from "react";
+import axios from "axios";
 
 const ProductDisplay = () => {
+  const { token } = useContext(SessionContext);
+
+  useEffect(() => {
+    console.log(token);
+
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/product", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        // const userId = response.data.user.id;
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+        console.error("There was a problem with the request:", error.message);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="mt-[70px]">
       <p className="text-center text-2xl font-bold my-8">Product Display</p>
@@ -56,7 +83,7 @@ const ProductDisplay = () => {
                   <p>Rs. {item.price}</p>
                 </div>
                 <Link
-                  to={`/editproduct/${item.id}`}
+                  to="/editproduct"
                   className="bg-black rounded-full text-white p-2
                   cursor-pointer"
                 >

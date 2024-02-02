@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
+import PropTypes from "prop-types";
 
-const Layout = () => {
+const Layout = ({ handleLogin }) => {
   const [isSignup, setIsSignup] = useState(false);
 
   const toggleSignup = () => {
@@ -13,7 +14,7 @@ const Layout = () => {
     <div className="mt-[90px]">
       {isSignup ? (
         <>
-          <Signup />
+          <Signup toggleSignup={toggleSignup} />
           <div className="flex my-2 gap-2">
             <p>Already have an account?</p>
             <p
@@ -26,7 +27,7 @@ const Layout = () => {
         </>
       ) : (
         <>
-          <Login />
+          <Login handleLogin={handleLogin} />
           <div className="flex my-2 gap-2">
             <p>Don&apos;t have an account?</p>
             <p
@@ -40,6 +41,10 @@ const Layout = () => {
       )}
     </div>
   );
+};
+
+Layout.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default Layout;
