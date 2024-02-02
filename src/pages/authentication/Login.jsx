@@ -46,7 +46,7 @@ const Login = ({ handleLogin }) => {
 
   return (
     <>
-      <div className="w-fit flex flex-col justify-center items-center bg-slate-600 rounded-lg">
+      <div className="w-fit flex flex-col justify-center items-center bg-[#f7f2f5] rounded-lg drop-shadow-lg">
         <p className="text-2xl p-4">Login</p>
         <div className="text-lg p-8">
           <form className="flex flex-col gap-4 items-center">
@@ -77,7 +77,7 @@ const Login = ({ handleLogin }) => {
             <button
               onClick={submit}
               type="submit"
-              className="w-fit py-2 px-4 m-4 bg-red-400 rounded-xl"
+              className="w-fit py-2 px-4 m-4 bg-[#5D0560] text-white rounded-xl"
             >
               Login
             </button>

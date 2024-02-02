@@ -28,8 +28,8 @@ function App() {
 
   return (
     <div className="relative w-full h-11/12 flex flex-col items-center justify-center">
-      <div className="fixed z-10 w-full top-0 left-0 right-0 bg-slate-400">
-        <p className="p-4 text-3xl font-semibold">Pick N Pay</p>
+      <div className="fixed z-10 w-full top-0 left-0 right-0 text-[#f7f2f5] bg-[#5D0560]">
+        <p className="p-4 text-3xl font-semibold drop-shadow-lg">Pick N Pay</p>
       </div>
       <SessionContext.Provider value={{ token: state.token, setSessionToken }}>
         <Router>

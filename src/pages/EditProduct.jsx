@@ -105,7 +105,7 @@ const EditProduct = () => {
   return (
     <div className="mt-[70px] flex flex-col items-center gap-2">
       <p className="text-center text-2xl font-bold my-8">Edit a Product</p>
-      <form className="w-fit p-4 grid grid-cols-2 gap-4 items-center justify-between bg-slate-600 rounded-lg">
+      <form className="w-fit p-4 grid grid-cols-2 gap-4 items-center justify-between bg-[#f7f2f5] rounded-lg drop-shadow-lg">
         <label>Product Name</label>
         <input
           type="text"
@@ -164,7 +164,7 @@ const EditProduct = () => {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="col-span-2 justify-self-center w-fit py-2 px-4 m-4 bg-red-400 rounded-xl"
+          className="col-span-2 justify-self-center w-fit py-2 px-4 m-4 bg-[#5D0560]  text-white rounded-xl"
         >
           Edit Product
         </button>

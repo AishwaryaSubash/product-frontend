@@ -56,7 +56,7 @@ const ProductDisplay = () => {
           return (
             <div
               key={index}
-              className="flex flex-col p-4 m-4 bg-red-400 rounded-xl drop-shadow-md justify-between"
+              className="flex flex-col p-4 m-4 text-[#5D0560] bg-[#F7F2F5] rounded-xl drop-shadow-md justify-between"
             >
               <div className="flex flex-col">
                 <div className="flex justify-between">
