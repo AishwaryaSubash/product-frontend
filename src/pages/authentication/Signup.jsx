@@ -19,11 +19,8 @@ const Signup = ({ toggleSignup }) => {
       );
       if (response.data.created) {
         toggleSignup();
-        //   setMessage("User created succesfully!");
-        // } else {
       }
       setMessage(response.data.message);
-      console.log(response.data);
     } catch (error) {
       console.error("There was a problem with the request:", error.message);
     }
@@ -58,7 +55,7 @@ const Signup = ({ toggleSignup }) => {
             <div className="flex flex-col gap-2">
               <label>Email</label>
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -70,7 +67,7 @@ const Signup = ({ toggleSignup }) => {
             <div className="flex flex-col gap-2">
               <label>Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}

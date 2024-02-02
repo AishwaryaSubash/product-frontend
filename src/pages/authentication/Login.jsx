@@ -17,20 +17,15 @@ const Login = ({ handleLogin }) => {
       ...prevData,
     }));
     try {
-      console.log(formData);
       const response = await axios.post(
         "http://localhost:3000/user/signin",
         formData
       );
       if (response.data.verified) {
-        console.log(response.data);
         setSessionToken(response.data.token);
         handleLogin(true);
-        //   setMessage("Login successful!");
-        // } else {
       }
       setMessage(response.data.message);
-      console.log(response.data);
     } catch (error) {
       console.error("There was a problem with the request:", error.message);
     }
@@ -65,7 +60,7 @@ const Login = ({ handleLogin }) => {
             <div className="flex flex-col gap-2">
               <label>Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}

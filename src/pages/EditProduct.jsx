@@ -27,14 +27,11 @@ const EditProduct = () => {
           },
           {
             headers: {
-              // "Content-Type": "application/json",
               Authorization: "Bearer " + token,
             },
           }
         );
         if (response.data.fetched) {
-          console.log(response.data.product);
-          // setProduct(response.data.product);
           const { productname, productdesc, price, status } =
             response.data.product;
           setFormData({
@@ -45,14 +42,11 @@ const EditProduct = () => {
           });
         }
       } catch (error) {
-        console.log(error);
         console.error("There was a problem with the request:", error.message);
       }
     };
 
     fetchProduct();
-    console.log(productId);
-    // console.log(jsonDataToSend);
   }, []);
 
   const handleChange = (e) => {
@@ -72,9 +66,6 @@ const EditProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData);
-    // console.log(token);
-
     try {
       const response = await axios.post(
         "http://localhost:3000/product/edit",
@@ -84,20 +75,16 @@ const EditProduct = () => {
         },
         {
           headers: {
-            // "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
         }
       );
-      console.log(response);
       if (response.data.edited) {
-        console.log(response.data.product);
         setMessage("Product edited succesfully!");
       } else {
         setMessage("Unable to edit product");
       }
     } catch (error) {
-      console.log(error);
       console.error("There was a problem with the request:", error.message);
     }
   };
@@ -115,7 +102,6 @@ const EditProduct = () => {
           placeholder="Enter product name"
           className="p-2 rounded-md"
         />
-
         <label>Enter Product Description</label>
         <input
           type="text"
@@ -125,7 +111,6 @@ const EditProduct = () => {
           placeholder="Enter product description"
           className="p-2 rounded-md"
         />
-
         <label>Enter Price</label>
         <input
           type="number"
@@ -135,7 +120,6 @@ const EditProduct = () => {
           placeholder="Enter price"
           className="p-2 rounded-md"
         />
-
         <label>Status</label>
         <div className="w-full flex gap-2 items-center justify-between">
           <label>

@@ -29,9 +29,6 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData);
-    // console.log(token);
-
     try {
       const response = await axios.post(
         "http://localhost:3000/product/add",
@@ -41,20 +38,16 @@ const AddProduct = () => {
         },
         {
           headers: {
-            // "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
         }
       );
       if (response.data.added) {
-        console.log(response.data.product);
         setMessage("Product added succesfully!");
       } else {
         setMessage("Unable to add product");
       }
-      console.log(response);
     } catch (error) {
-      console.log(error);
       console.error("There was a problem with the request:", error.message);
     }
   };
@@ -72,7 +65,6 @@ const AddProduct = () => {
           placeholder="Enter product name"
           className="p-2 rounded-md"
         />
-
         <label>Enter Product Description</label>
         <input
           type="text"
@@ -82,7 +74,6 @@ const AddProduct = () => {
           placeholder="Enter product description"
           className="p-2 rounded-md"
         />
-
         <label>Enter Price</label>
         <input
           type="number"
@@ -92,7 +83,6 @@ const AddProduct = () => {
           placeholder="Enter price"
           className="p-2 rounded-md"
         />
-
         <label>Status</label>
         <div className="w-full flex gap-2 items-center justify-between">
           <label>

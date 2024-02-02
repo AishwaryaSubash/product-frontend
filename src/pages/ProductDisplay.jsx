@@ -5,12 +5,9 @@ import axios from "axios";
 
 const ProductDisplay = () => {
   const { token } = useContext(SessionContext);
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // console.log(token);
-
     const fetchProducts = async () => {
       try {
         const response = await axios.get("http://localhost:3000/product", {
@@ -19,11 +16,9 @@ const ProductDisplay = () => {
           },
         });
         if (response.data.fetched) {
-          console.log(response.data.products);
           setProducts(response.data.products);
         }
       } catch (error) {
-        console.log(error);
         console.error("There was a problem with the request:", error.message);
       }
     };
