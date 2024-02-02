@@ -2,14 +2,20 @@ import { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "./../App";
-// import PropTypes from "prop-types";
 
 const EditProduct = () => {
   const { token } = useContext(SessionContext);
   const { productId } = useParams();
 
+  // const [product, setProduct] = useState({
+  //   productname: "",
+  //   productdesc: "",
+  //   status: "",
+  //   price: 0,
+  // });
+
   const [formData, setFormData] = useState({
-    id: "",
+    id: productId,
     productname: "",
     productdesc: "",
     status: "",
@@ -17,8 +23,42 @@ const EditProduct = () => {
   });
 
   useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/product/getOneProduct",
+          {
+            id: productId,
+          },
+          {
+            headers: {
+              // "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.data.fetched) {
+          console.log(response.data.product);
+          // setProduct(response.data.product);
+          const { productname, productdesc, price, status } =
+            response.data.product;
+          setFormData({
+            productname,
+            productdesc,
+            price,
+            status,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        console.error("There was a problem with the request:", error.message);
+      }
+    };
+
+    fetchProduct();
     console.log(productId);
-  });
+    // console.log(jsonDataToSend);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,7 +111,7 @@ const EditProduct = () => {
         <input
           type="text"
           name="productname"
-          value={formData.name}
+          value={formData.productname}
           onChange={handleChange}
           placeholder="Enter product name"
           className="p-2 rounded-md"
@@ -81,7 +121,7 @@ const EditProduct = () => {
         <input
           type="text"
           name="productdesc"
-          value={formData.desc}
+          value={formData.productdesc}
           onChange={handleChange}
           placeholder="Enter product description"
           className="p-2 rounded-md"
@@ -130,6 +170,7 @@ const EditProduct = () => {
           Edit Product
         </button>
       </form>
+      {/* <p>{message}</p> */}
       <Link to="/displayproduct" className="underline">
         Go to Product Display
       </Link>

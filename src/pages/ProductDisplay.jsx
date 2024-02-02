@@ -84,6 +84,7 @@ const ProductDisplay = () => {
                   </svg>
                   <p>Rs. {item.price}</p>
                 </div>
+
                 <Link
                   to={`/editproduct/${item.id}`}
                   className="bg-black rounded-full text-white p-2
