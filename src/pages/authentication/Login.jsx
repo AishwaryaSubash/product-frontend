@@ -26,10 +26,10 @@ const Login = ({ handleLogin }) => {
         console.log(response.data);
         setSessionToken(response.data.token);
         handleLogin(true);
-        setMessage("Login successful!");
-      } else {
-        setMessage(response.data.message);
+        //   setMessage("Login successful!");
+        // } else {
       }
+      setMessage(response.data.message);
       console.log(response.data);
     } catch (error) {
       console.error("There was a problem with the request:", error.message);
