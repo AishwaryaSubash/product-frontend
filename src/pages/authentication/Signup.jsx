@@ -8,6 +8,7 @@ const Signup = ({ toggleSignup }) => {
     password: "",
     email: "",
   });
+  const [message, setMessage] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -16,8 +17,13 @@ const Signup = ({ toggleSignup }) => {
         "http://localhost:3000/user/signup",
         formData
       );
+      if (response.data.verified) {
+        toggleSignup();
+        setMessage("User created succesfully!");
+      } else {
+        setMessage(response.data.message);
+      }
       console.log(response.data);
-      toggleSignup();
     } catch (error) {
       console.error("There was a problem with the request:", error.message);
     }
@@ -80,6 +86,7 @@ const Signup = ({ toggleSignup }) => {
             Sign Up
           </button>
         </form>
+        <p>{message}</p>
       </div>
     </div>
   );
