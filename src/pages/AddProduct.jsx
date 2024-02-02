@@ -5,7 +5,7 @@ import { SessionContext } from "./../App";
 
 const AddProduct = () => {
   const { token } = useContext(SessionContext);
-
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     productname: "",
     productdesc: "",
@@ -48,7 +48,11 @@ const AddProduct = () => {
       );
       if (response.data.added) {
         console.log(response.data.product);
+        setMessage("Product added succesfully!");
+      } else {
+        setMessage("Unable to add product");
       }
+      console.log(response);
     } catch (error) {
       console.log(error);
       console.error("There was a problem with the request:", error.message);
@@ -122,6 +126,7 @@ const AddProduct = () => {
           Add Product to Product List
         </button>
       </form>
+      <p>{message}</p>
       <Link to="/displayproduct" className="underline">
         Go to Product Display
       </Link>

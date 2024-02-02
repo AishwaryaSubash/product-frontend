@@ -7,12 +7,7 @@ const EditProduct = () => {
   const { token } = useContext(SessionContext);
   const { productId } = useParams();
 
-  // const [product, setProduct] = useState({
-  //   productname: "",
-  //   productdesc: "",
-  //   status: "",
-  //   price: 0,
-  // });
+  const [message, setMessage] = useState("");
 
   const [formData, setFormData] = useState({
     id: productId,
@@ -66,12 +61,12 @@ const EditProduct = () => {
       setFormData((prevData) => ({
         ...prevData,
         price: Number(value),
-        id: productId,
       }));
     }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+      id: productId,
     }));
   };
 
@@ -94,8 +89,12 @@ const EditProduct = () => {
           },
         }
       );
+      console.log(response);
       if (response.data.edited) {
         console.log(response.data.product);
+        setMessage("Product edited succesfully!");
+      } else {
+        setMessage("Unable to edit product");
       }
     } catch (error) {
       console.log(error);
@@ -170,7 +169,7 @@ const EditProduct = () => {
           Edit Product
         </button>
       </form>
-      {/* <p>{message}</p> */}
+      <p>{message}</p>
       <Link to="/displayproduct" className="underline">
         Go to Product Display
       </Link>

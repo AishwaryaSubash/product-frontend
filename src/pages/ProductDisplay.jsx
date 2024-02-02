@@ -56,19 +56,21 @@ const ProductDisplay = () => {
           return (
             <div
               key={index}
-              className="flex flex-col p-4 m-4 bg-red-400 rounded-xl drop-shadow-md"
+              className="flex flex-col p-4 m-4 bg-red-400 rounded-xl drop-shadow-md justify-between"
             >
-              <div className="flex justify-between">
-                <p className="text-2xl font-semibold">{item.productname}</p>
-                <div>
-                  {item.status === "active" ? (
-                    <div className="w-4 h-4 rounded-full bg-green-600 border"></div>
-                  ) : (
-                    <div className="w-4 h-4 rounded-full bg-red-600 border"></div>
-                  )}
+              <div className="flex flex-col">
+                <div className="flex justify-between">
+                  <p className="text-2xl font-semibold">{item.productname}</p>
+                  <div>
+                    {item.status === "active" ? (
+                      <div className="w-4 h-4 rounded-full bg-green-600 border"></div>
+                    ) : (
+                      <div className="w-4 h-4 rounded-full bg-red-600 border"></div>
+                    )}
+                  </div>
                 </div>
+                <p>{item.productdesc}</p>
               </div>
-              <p>{item.productdesc}</p>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <svg
