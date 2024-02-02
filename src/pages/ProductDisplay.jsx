@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-// import { products } from "../assets/products";
 import { Link } from "react-router-dom";
 import { SessionContext } from "./../App";
-// import { useEffect } from "react";
 import axios from "axios";
 
 const ProductDisplay = () => {
@@ -11,7 +9,7 @@ const ProductDisplay = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    console.log(token);
+    // console.log(token);
 
     const fetchProducts = async () => {
       try {

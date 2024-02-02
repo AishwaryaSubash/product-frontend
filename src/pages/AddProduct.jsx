@@ -1,43 +1,50 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+// import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { SessionContext } from "./../App";
 
 const AddProduct = () => {
+  const { token } = useContext(SessionContext);
+
   const [formData, setFormData] = useState({
-    name: "",
-    desc: "",
+    productname: "",
+    productdesc: "",
     status: "",
     price: 0,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === "price") {
+      setFormData((prevData) => ({
+        ...prevData,
+        price: Number(value),
+      }));
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    // fetch("http://example.com/submit", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error("Failed to submit form data");
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log("Form data submitted successfully:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error submitting form data:", error);
-    //   });
+    console.log(token);
+    const response = await axios.post(
+      "http://localhost:3000/product/add",
+      {
+        ...formData,
+        price: Number(formData.price),
+      },
+      {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    console.log(response.data);
   };
 
   return (
@@ -47,7 +54,7 @@ const AddProduct = () => {
         <label>Product Name</label>
         <input
           type="text"
-          name="name"
+          name="productname"
           value={formData.name}
           onChange={handleChange}
           placeholder="Enter product name"
@@ -57,7 +64,7 @@ const AddProduct = () => {
         <label>Enter Product Description</label>
         <input
           type="text"
-          name="desc"
+          name="productdesc"
           value={formData.desc}
           onChange={handleChange}
           placeholder="Enter product description"
