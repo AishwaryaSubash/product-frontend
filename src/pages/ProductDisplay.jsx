@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { products } from "../assets/products";
+import { useContext, useEffect, useState } from "react";
+// import { products } from "../assets/products";
 import { Link } from "react-router-dom";
 import { SessionContext } from "./../App";
 // import { useEffect } from "react";
@@ -7,6 +7,8 @@ import axios from "axios";
 
 const ProductDisplay = () => {
   const { token } = useContext(SessionContext);
+
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     console.log(token);
@@ -18,8 +20,8 @@ const ProductDisplay = () => {
             Authorization: "Bearer " + token,
           },
         });
-        // const userId = response.data.user.id;
         console.log(response.data);
+        setProducts(response.data);
       } catch (error) {
         console.log(error);
         console.error("There was a problem with the request:", error.message);
@@ -57,7 +59,7 @@ const ProductDisplay = () => {
               className="flex flex-col p-4 m-4 bg-red-400 rounded-xl drop-shadow-md"
             >
               <div className="flex justify-between">
-                <p className="text-2xl font-semibold">{item.product_name}</p>
+                <p className="text-2xl font-semibold">{item.productname}</p>
                 <div>
                   {item.status === "active" ? (
                     <div className="w-4 h-4 rounded-full bg-green-600 border"></div>
@@ -66,7 +68,7 @@ const ProductDisplay = () => {
                   )}
                 </div>
               </div>
-              <p>{item.product_description}</p>
+              <p>{item.productdesc}</p>
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <svg
