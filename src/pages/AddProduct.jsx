@@ -29,22 +29,30 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    console.log(token);
-    const response = await axios.post(
-      "http://localhost:3000/product/add",
-      {
-        ...formData,
-        price: Number(formData.price),
-      },
-      {
-        headers: {
-          // "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+    // console.log(formData);
+    // console.log(token);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/product/add",
+        {
+          ...formData,
+          price: Number(formData.price),
         },
+        {
+          headers: {
+            // "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (response.data.added) {
+        console.log(response.data.product);
       }
-    );
-    console.log(response.data);
+    } catch (error) {
+      console.log(error);
+      console.error("There was a problem with the request:", error.message);
+    }
   };
 
   return (

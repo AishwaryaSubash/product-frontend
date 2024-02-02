@@ -18,8 +18,10 @@ const ProductDisplay = () => {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(response.data);
-        setProducts(response.data);
+        if (response.data.fetched) {
+          console.log(response.data.products);
+          setProducts(response.data.products);
+        }
       } catch (error) {
         console.log(error);
         console.error("There was a problem with the request:", error.message);
@@ -83,7 +85,7 @@ const ProductDisplay = () => {
                   <p>Rs. {item.price}</p>
                 </div>
                 <Link
-                  to="/editproduct"
+                  to={`/editproduct/${item.id}`}
                   className="bg-black rounded-full text-white p-2
                   cursor-pointer"
                 >
